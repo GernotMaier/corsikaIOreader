@@ -66,3 +66,5 @@ Type '''make corsikaIOreader'''
 
  ''corsikaIOreader -cors DAT023000.telescope -grisu stdout -abs us76_new | grisudet detector.pilot''
 
+ (2019, Oct 23)
+
