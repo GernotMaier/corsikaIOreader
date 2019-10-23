@@ -48,7 +48,7 @@ using namespace std;
 
 bool bDebug = false;
 
-string fVersion = "corsikaIOreader (v 1.44)";
+string fVersion = "corsikaIOreader (v 2.00.0-beta)";
 
 
 struct linked_string corsika_inputs;
@@ -175,7 +175,16 @@ vector< double > getXYZlevels( double istart, double idiff )
     double obs_height = 0.;
     double ih;
     
-    atmset_( &iatmo, &obs_height );
+    try
+    {
+        atmset_( &iatmo, &obs_height );
+    }
+    catch(...)
+    {
+        cout << "error initialising atmospheres" << endl;
+        cout << "...exiting" << endl;
+        exit( EXIT_FAILURE );
+    }
     
     vector< double > iL;
     if( idiff <= 0. )
@@ -238,7 +247,7 @@ int main( int argc, char** argv )
     double corstime;
     bunch Chphoton;
     string fCorsikaIO = "";                              // corsika io file
-    string fAtmosModel = "modtran4";
+    string fAtmosModel = "noExtinction";
     string fAtmosFile  = "data/us76.50km.ext";
     double queff = 1.;
     bitset<32> EVTH76;
@@ -755,7 +764,16 @@ int main( int argc, char** argv )
                     {
                         iatmo = 6;    /* US standard atmosphere */
                     }
-                    atmset_( &iatmo, &array.obs_height );
+                    try
+                    {
+                        atmset_( &iatmo, &array.obs_height );
+                    }
+                    catch(...)
+                    {
+                        cout << "error initialising atmospheres" << endl;
+                        cout << "...exiting" << endl;
+                        exit( EXIT_FAILURE );
+                    }
                     have_atm_profile = 1;
                 }
                 
