@@ -487,7 +487,6 @@ void VAtmosAbsorption::read_extint( int LAMBDA_MIN )
     }
     
     int    i, j, bin, mid_step, step, lambda, lambda_in;
-    char   err_message[150];
     FILE*   finp;
     
     finp = fopen( fSourceFile.c_str(), "r" );
@@ -571,10 +570,10 @@ void VAtmosAbsorption::read_extint( int LAMBDA_MIN )
     
     else
     {
-        ( void ) sprintf( err_message, "Unable to open input file: %80s ",
-                          fSourceFile.c_str() );
-        cout << err_message << endl;
-        exit( -1 );
+        cout << "Unable to open input file: ";
+        cout << fSourceFile << endl;
+        cout << "...exiting" << endl;
+        exit( EXIT_FAILURE );
     }
 }
 

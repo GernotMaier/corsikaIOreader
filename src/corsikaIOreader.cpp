@@ -61,7 +61,7 @@ using namespace std;
 
 bool bDebug = false;
 
-string fVersion = "corsikaIOreader (v 1.44)";
+string fVersion = "corsikaIOreader (v 2.00.0-beta)";
 
 
 struct linked_string corsika_inputs;
@@ -188,7 +188,16 @@ vector< double > getXYZlevels( double istart, double idiff )
     double obs_height = 0.;
     double ih;
     
-    atmset_( &iatmo, &obs_height );
+    try
+    {
+        atmset_( &iatmo, &obs_height );
+    }
+    catch(...)
+    {
+        cout << "error initialising atmospheres" << endl;
+        cout << "...exiting" << endl;
+        exit( EXIT_FAILURE );
+    }
     
     vector< double > iL;
     if( idiff <= 0. )
@@ -230,7 +239,6 @@ int main( int argc, char** argv )
     bool bstdout = false;
     bool bHisto = false;    // if true, tree and histograms are filled
     bool bPrintHeaders = false;
-    double distance;
     int nbunches;
     int itc, iarray, jarray, ibunch;
     double lambda;
@@ -238,20 +246,21 @@ int main( int argc, char** argv )
     double wl_bunch, airmass, cx, cy, cz, prob;
     double tel_dist, tel_delay;
     FILE* data_file;
-    static double elow;
+    // static double elow;
     static struct bunch bunches[MAX_BUNCHES];
     static int particle_type;
     static double primary_energy;
     static double wl_lower_limit, wl_upper_limit;
-    int run = -1, event = -1;
+    int run = -1;
+    // int event = -1;
     double alt = 0.;
     double az = 0.;
     static int have_atm_profile = 0;
-    double toffset = 0.;
+    // double toffset = 0.;
     double corstime;
     bunch Chphoton;
     string fCorsikaIO = "";                              // corsika io file
-    string fAtmosModel = "modtran4";
+    string fAtmosModel = "noExtinction";
     string fAtmosFile  = "data/us76.50km.ext";
     double queff = 1.;
     bitset<32> EVTH76;
@@ -609,7 +618,7 @@ int main( int argc, char** argv )
                     printf( "Run %d: observation level is at %6.1f m\n", run, 0.01 * array.obs_height );
                 }
                 airlightspeed = 29.9792458 / Nair( 1e-5 * array.obs_height );
-                elow = runh[16];
+                // elow = runh[16];
                 if( bDebug )
                 {
                     printf( "Events created between %5.3f and %5.3f TeV\n", ( double )runh[16] / 1e3, ( double )runh[17] / 1e3 );
@@ -727,7 +736,7 @@ int main( int argc, char** argv )
                     cout << "reading IO_TYPE_MC_EVTH" << endl;
                 }
                 read_tel_block( iobuf, IO_TYPE_MC_EVTH, evth, 273 );
-                event = ( int )evth[1];
+                // event = ( int )evth[1];
                 wl_lower_limit = evth[95];
                 wl_upper_limit = evth[96];
                 primary_energy = evth[3];
@@ -768,7 +777,16 @@ int main( int argc, char** argv )
                     {
                         iatmo = 6;    /* US standard atmosphere */
                     }
-                    atmset_( &iatmo, &array.obs_height );
+                    try
+                    {
+                        atmset_( &iatmo, &array.obs_height );
+                    }
+                    catch(...)
+                    {
+                        cout << "error initialising atmospheres" << endl;
+                        cout << "...exiting" << endl;
+                        exit( EXIT_FAILURE );
+                    }
                     have_atm_profile = 1;
                 }
                 
@@ -777,7 +795,7 @@ int main( int argc, char** argv )
                                             array.shower_sim.cmax = 0.;
                 array.shower_sim.hmax = 0.;
                 particle_type = Nint( evth[2] );
-                toffset = ( evth[6] - array.obs_height ) / cos( evth[10] ) / 29.9792458;
+                // toffset = ( evth[6] - array.obs_height ) / cos( evth[10] ) / 29.9792458;
                 if( bDebug )
                 {
                     printf( "Event %d: particle type %d with energy %5.2f TeV \n", ( int )evth[1], particle_type, 0.001 * primary_energy );
@@ -823,7 +841,7 @@ int main( int argc, char** argv )
                     cout << "IO_TYPE_MC_TELOFF" << endl;
                 }
                 read_tel_offset( iobuf, MAX_ARRAY, &array.narray, &array.toff, array.xoff, array.yoff );
-                toffset = array.toff; /* Should be about the same again as above */
+                // toffset = array.toff; /* Should be about the same again as above */
                 array.mc_run.num_arrays = array.narray;
                 if( bDebug )
                 {
@@ -927,7 +945,7 @@ int main( int argc, char** argv )
                         }
                         /* Distance between point of emission and */
                         /* the CORSIKA observation level */
-                        distance = ( bunches[ibunch].zem - array.obs_height ) * airmass;  // bunches[ibunch].zem is above sea level
+                        // distance = ( bunches[ibunch].zem - array.obs_height ) * airmass;  // bunches[ibunch].zem is above sea level
                         /* Distance between CORSIKA observation level and */
                         /* telescope fixed position. */
                         tel_dist = array.ztel[itel] * airmass;
