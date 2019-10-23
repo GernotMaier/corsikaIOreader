@@ -1,7 +1,5 @@
 # Makefile for corsikaIOreader
 #
-#
-#
 
 ARCH := $(shell uname)
 
