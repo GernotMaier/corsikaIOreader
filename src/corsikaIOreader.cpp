@@ -1,14 +1,27 @@
-/*! \file  corsikaIOreader.cpp
-    \brief CORSIKA reader for eventio format, output: histograms or grisudet readable file
+/* 
+corsikaIOreader.cpp
+brief CORSIKA reader for eventio format, output: histograms or grisudet readable file
 
-    This code is based on a skeleton program provided by Konrad Bernloehr (sim_skeleton.c)
-    as part of the CORSIKA IACT package
+This code is based on a skeleton program provided by Konrad Bernloehr (sim_skeleton.c)
+as part of the CORSIKA IACT package
 
-    see README file for documentation
+see README file for documentation
 
-    options: try corsikaIOreader -help
+options: try corsikaIOreader -help
 
-    Contact person: Gernot Maier
+===============
+
+corsikaIOreader is a tool to read CORSIKA eventio files 
+
+Copyright (C) 2004, 2013, 2019 corsikaIOreader Developers
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses/gpl-3.0
+
+
 */
 
 #include "initial.h"      /* This file includes others as required. */
