@@ -66,5 +66,8 @@ Type '''make corsikaIOreader'''
 
  ''corsikaIOreader -cors DAT023000.telescope -grisu stdout -abs us76_new | grisudet detector.pilot''
 
+ Older versions of corsikaIOreader are available through https://wiki-zeuthen.desy.de/CTA/CorsikaIOreader
+ (no guarantee that this website exists in future)
+
  (2019, Oct 23)
 
