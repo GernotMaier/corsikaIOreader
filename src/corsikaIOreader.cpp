@@ -1,25 +1,28 @@
 /* 
-corsikaIOreader.cpp
-brief CORSIKA reader for eventio format, output: histograms or grisudet readable file
+=============================================================================
+    corsikaIOreader is a tool to read CORSIKA eventio files
+    Copyright (C) 2004, 2013, 2019 corsikaIOreader Developers
 
-This code is based on a skeleton program provided by Konrad Bernloehr (sim_skeleton.c)
-as part of the CORSIKA IACT package
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-see README file for documentation
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-options: try corsikaIOreader -help
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+=============================================================================
 
-===============
+    This code is based on a skeleton program provided by Konrad Bernloehr (sim_skeleton.c)
+    as part of the CORSIKA IACT package
 
-corsikaIOreader is a tool to read CORSIKA eventio files 
+    see README file for documentation
 
-Copyright (C) 2004, 2013, 2019 corsikaIOreader Developers
-
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses/gpl-3.0
+    options: try corsikaIOreader -help
 
 
 */
