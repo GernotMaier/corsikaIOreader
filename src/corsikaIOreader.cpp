@@ -1,7 +1,7 @@
 /* 
 =============================================================================
     corsikaIOreader is a tool to read CORSIKA eventio files
-    Copyright (C) 2004, 2013, 2019 corsikaIOreader Developers
+    Copyright (C) 2004, 2013, 2019 Gernot Maier and Henrike Fleischhack
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -417,6 +417,7 @@ int main( int argc, char** argv )
             else if( fAtmosFile == "us76_new" )
             {
                 fAtmosFile = "data/us76.50km.ext";
+                fAtmosModel = "modtran4";
             }
             else if( fAtmosFile == "corsika" || fAtmosFile == "CORSIKA" )
             {
@@ -427,10 +428,13 @@ int main( int argc, char** argv )
             {
                 fAtmosModel = "modtran5";
             }
-            
             else if( fAtmosFile == "noExtinction" )
             {
                 fAtmosModel = "noExtinction";
+            }
+            else
+            {
+                fAtmosModel = "modtran4";
             }
             i++;
         }
