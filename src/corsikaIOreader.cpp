@@ -64,7 +64,7 @@ using namespace std;
 
 bool bDebug = false;
 
-string fVersion = "corsikaIOreader (v 2.00.0-beta)";
+string fVersion = "corsikaIOreader (v 2.0.0)";
 
 
 struct linked_string corsika_inputs;
