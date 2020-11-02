@@ -2,6 +2,8 @@
 
 **corsikaIOreader** is a tool to read [CORSIKA](https://www.ikp.kit.edu/corsika/index.php) eventio files and 
 
+[![DOI](https://zenodo.org/badge/216995301.svg)](https://zenodo.org/badge/latestdoi/216995301)
+
 * convert photon information into GrISU or GrOptics format
 * fill root histograms with particle and Cherenkov photon information
 
